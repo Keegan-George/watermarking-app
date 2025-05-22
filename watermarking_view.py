@@ -11,7 +11,6 @@ class WatermarkingView:
         # canvas area
         self.canvas = Canvas(width=CANVAS_WIDTH, height=CANVAS_HEIGHT)
         self.canvas.grid(row=0, column=0, columnspan=4)
-
         self.canvas.create_text(
             CANVAS_WIDTH // 2,
             CANVAS_HEIGHT // 2,
