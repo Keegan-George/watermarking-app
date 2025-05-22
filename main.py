@@ -1,5 +1,5 @@
 """
-Application that adds a simple text watermark to an image of your choosing.
+Application that adds a simple text watermark to an image.
 """
 
 from tkinter import Tk
