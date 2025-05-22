@@ -9,29 +9,47 @@ class WatermarkingController:
     def __init__(self, model: WatermarkingModel, view: WatermarkingView):
         self.view = view
         self.model = model
-        self.view.upload_image_button.config(command=self.upload_image)
+        self.view.upload_image_button.config(command=self.open_image)
         self.view.apply_watermark_button.config(command=self.apply_watermark)
         self.view.save_image_button.config(command=self.save_image)
 
-    def upload_image(self):
+    def open_image(self):
+        """
+        Open an image on your local.
+        """
         self.model.filepath = filedialog.askopenfilename()
         self.model.pil_img = Image.open(self.model.filepath).convert("RGBA")
-        self.display_image_in_canvas(self.model.pil_img)
+        self.display_image(self.model.pil_img)
 
-    def display_image_in_canvas(self, image: Image):
+    def display_image(self, image: Image):
+        """
+        Display image in the UI.
+        """
+
+        # resize image to canvas dimensions
         resized_image = image.resize((CANVAS_WIDTH, CANVAS_HEIGHT))
-        self.model.tk_img = ImageTk.PhotoImage(image=resized_image)
+
+        # initialize PhotoImage object
+        self.model.display_img = ImageTk.PhotoImage(image=resized_image)
+
+        # display image centered on canvas
         self.view.canvas.create_image(
-            CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2, image=self.model.tk_img
+            CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2, image=self.model.display_img
         )
 
     def save_image(self):
-        if self.model.output:
-            self.model.output.save(f"added_watermark.png")
+        """
+        Save image displayed in UI. 
+        """
+        if self.model.output_img:
+            self.model.output_img.save(f"added_watermark.png")
 
     def apply_watermark(self):
+        """
+        Apply watermark text to image. 
+        """
         if self.model.pil_img:
-            # create fully transparent watermark image
+            # create fully transparent watermark image same size as the original 
             watermark_img = Image.new(
                 "RGBA", self.model.pil_img.size, (255, 255, 255, 0)
             )
@@ -57,6 +75,7 @@ class WatermarkingController:
                 (img_height - watermark_height) // 2,
             )
 
+            # draw watermark text
             draw.text(
                 xy=watermark_position,
                 text=watermark_text,
@@ -64,6 +83,8 @@ class WatermarkingController:
                 font=font,
             )
 
-            self.model.output = Image.alpha_composite(self.model.pil_img, watermark_img)
+            # combine original image with watermark text img
+            self.model.output_img = Image.alpha_composite(self.model.pil_img, watermark_img)
 
-            self.display_image_in_canvas(self.model.output)
+            # display the new image
+            self.display_image(self.model.output_img)
