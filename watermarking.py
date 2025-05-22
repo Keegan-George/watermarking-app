@@ -1,43 +1,43 @@
 from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageDraw, ImageTk, ImageFont
-from styling import *
+from config import *
 
 
 class Watermarking:
     def __init__(self):
         self.window = Tk()
-        self.window.title("Watermarking Application")
-        self.window.config(padx=WINDOW_PADDING, pady=WINDOW_PADDING)
+        # self.window.title("Watermarking Application")
+        # self.window.config(padx=PADDING, pady=PADDING)
         self.tk_img = None  # required to prevent image being garbage collection after the function completes
         self.pil_img = None
         self.output = None
 
-        # ui widgets
-        self.canvas = Canvas(width=CANVAS_WIDTH, height=CANVAS_HEIGHT)
-        self.upload_image_button = Button(
-            text="Upload Image", command=self.upload_image
-        )
-        self.watermark_label = Label(text="Watermark text:")
-        self.watermark_input = Entry(width=55)
-        self.apply_watermark_button = Button(
-            text="Apply Watermark", command=self.apply_watermark
-        )
-        self.save_button = Button(text="Save Image", command=self.save_image)
-        self.canvas.create_text(
-            CANVAS_WIDTH // 2,
-            CANVAS_HEIGHT // 2,
-            text="Upload an image to start",
-            anchor=CENTER,
-        )
+        # # ui widgets
+        # self.canvas = Canvas(width=CANVAS_WIDTH, height=CANVAS_HEIGHT)
+        # self.upload_image_button = Button(
+        #     text="Upload Image", command=self.upload_image
+        # )
+        # self.watermark_label = Label(text="Watermark text:")
+        # self.watermark_input = Entry(width=55)
+        # self.apply_watermark_button = Button(
+        #     text="Apply Watermark", command=self.apply_watermark
+        # )
+        # self.save_button = Button(text="Save Image", command=self.save_image)
+        # self.canvas.create_text(
+        #     CANVAS_WIDTH // 2,
+        #     CANVAS_HEIGHT // 2,
+        #     text="Upload an image to start",
+        #     anchor=CENTER,
+        # )
 
-        # widget grid positions
-        self.canvas.grid(row=0, column=0, columnspan=4)
-        self.upload_image_button.grid(row=1, column=0)
-        self.watermark_label.grid(row=2, column=0)
-        self.watermark_input.grid(row=2, column=1)
-        self.apply_watermark_button.grid(row=2, column=2)
-        self.save_button.grid(row=2, column=3)
+        # # widget grid positions
+        # self.canvas.grid(row=0, column=0, columnspan=4)
+        # self.upload_image_button.grid(row=1, column=0)
+        # self.watermark_label.grid(row=2, column=0)
+        # self.watermark_input.grid(row=2, column=1)
+        # self.apply_watermark_button.grid(row=2, column=2)
+        # self.save_button.grid(row=2, column=3)
 
         self.window.mainloop()
 
