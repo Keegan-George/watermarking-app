@@ -5,3 +5,4 @@ FONT_COLOUR = (255, 0, 0, 128)
 CANVAS_WIDTH = 640
 CANVAS_HEIGHT = 480
 FONT = "arial.ttf"
+OUTPUT_FILENAME = "watermarked_img.png"

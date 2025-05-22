@@ -42,7 +42,7 @@ class WatermarkingController:
         Save image displayed in UI. 
         """
         if self.model.output_img:
-            self.model.output_img.save(f"added_watermark.png")
+            self.model.output_img.save(OUTPUT_FILENAME)
 
     def apply_watermark(self):
         """
