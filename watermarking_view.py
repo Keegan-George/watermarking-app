@@ -37,3 +37,10 @@ class WatermarkingView:
         # save image button
         self.save_image_button = Button(text="Save Image")
         self.save_image_button.grid(row=2, column=3)
+
+    # get watermark text
+    def get_watermark_text(self) -> str:
+        """
+        Returns the text currently entered in the input field.
+        """
+        return self.watermark_input.get()

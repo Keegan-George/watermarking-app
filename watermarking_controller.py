@@ -64,7 +64,7 @@ class WatermarkingController:
             )
 
             # get size of a bounding box around the watermark text
-            watermark_text = self.view.watermark_input.get()
+            watermark_text = self.view.get_watermark_text()
             _, _, watermark_width, watermark_height = draw.textbbox(
                 xy=(0, 0), text=watermark_text, font=font
             )
