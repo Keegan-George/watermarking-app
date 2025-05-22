@@ -1,5 +1,5 @@
-from tkinter import *
 from config import *
+from tkinter import *
 
 
 class WatermarkingView:
@@ -20,9 +20,7 @@ class WatermarkingView:
         )
 
         # upload image button
-        self.upload_image_button = Button(
-            text="Upload Image", command=self.upload_image
-        )
+        self.upload_image_button = Button(text="Upload Image")
         self.upload_image_button.grid(row=1, column=0)
 
         # watermark label
@@ -34,11 +32,9 @@ class WatermarkingView:
         self.watermark_input.grid(row=2, column=1)
 
         # apply watermark button
-        self.apply_watermark_button = Button(
-            text="Apply Watermark", command=self.apply_watermark
-        )
+        self.apply_watermark_button = Button(text="Apply Watermark")
         self.apply_watermark_button.grid(row=2, column=2)
 
         # save image button
-        self.save_button = Button(text="Save Image", command=self.save_image)
-        self.save_button.grid(row=2, column=3)
+        self.save_image_button = Button(text="Save Image")
+        self.save_image_button.grid(row=2, column=3)
