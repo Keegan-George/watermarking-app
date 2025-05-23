@@ -1,5 +1,6 @@
 from config import *
 from tkinter import *
+from PIL import ImageTk
 
 
 class WatermarkingView:
@@ -7,6 +8,7 @@ class WatermarkingView:
         self.root = root
         self.root.title(TITLE)
         self.root.config(padx=PADDING, pady=PADDING)
+        self.display_img = None
 
         # canvas area
         self.canvas = Canvas(width=CANVAS_WIDTH, height=CANVAS_HEIGHT)
@@ -38,9 +40,23 @@ class WatermarkingView:
         self.save_image_button = Button(text="Save Image")
         self.save_image_button.grid(row=2, column=3)
 
-    # get watermark text
     def get_watermark_text(self) -> str:
         """
         Returns the text currently entered in the input field.
         """
         return self.watermark_input.get()
+
+    def display_image(self, image: Image):
+        """
+        Display image in the UI.
+        """
+        # resize image to canvas dimensions
+        resized_image = image.resize((CANVAS_WIDTH, CANVAS_HEIGHT))
+
+        # initialize PhotoImage object
+        self.display_img = ImageTk.PhotoImage(image=resized_image)
+
+        # display image centered on canvas
+        self.canvas.create_image(
+            CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2, image=self.display_img
+        )
